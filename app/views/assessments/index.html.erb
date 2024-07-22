@@ -1,1 +1,7 @@
-teste
+<p>Nome do paciente: <%= @patient.name %> </p>
+<p>Lista de Exercícios </p>
+<% @patient.exercises.each do |exercise| %>
+  <p> <%= exercise.name %> </p>
+<% end %>
+
+

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "up" => "rails/health#show", as: :rails_health_check
-  get 'assessments', to: 'assessments#index'
+  get 'assessments/:patient_id', to: 'assessments#index', as: 'assessments'
   get 'backoffice', to: 'backoffice#index'
   resources :exercises, only: [:index, :new, :create]
   resources :patients, only: [:index, :new, :create]

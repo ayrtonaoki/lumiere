@@ -23,3 +23,10 @@ if Exercise.count == 0
   Exercise.create!(name: 'Pequeno x Grande')
   Exercise.create!(name: 'Quebra cabeça de 3 peças')
 end
+
+if PatientExercise.count == 0
+  PatientExercise.create!(patient_id: 1, exercise_id: 1)
+  PatientExercise.create!(patient_id: 1, exercise_id: 2)
+  PatientExercise.create!(patient_id: 2, exercise_id: 3)
+  PatientExercise.create!(patient_id: 2, exercise_id: 4)
+end
