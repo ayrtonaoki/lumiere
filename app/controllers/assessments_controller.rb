@@ -2,6 +2,6 @@ class AssessmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @patient = Patient.find(params[:patient_id])
+    @patient_exercises = PatientExercise.where(patient_id: params[:patient_id])
   end
 end

@@ -1,7 +1,26 @@
-<p>Nome do paciente: <%= @patient.name %> </p>
+<%= link_to 'Pacientes', patients_path %>
+<p>Nome do paciente: <%= @patient_exercises.first.patient.name %> </p>
 <p>Lista de Exercícios </p>
-<% @patient.exercises.each do |exercise| %>
-  <p> <%= exercise.name %> </p>
-<% end %>
 
-
+<table>
+  <thead>
+    <tr>
+      <th>Exercício</th>
+      <th>Sucessos</th>
+      <th>Falhas</th>
+      <th>Com ajuda</th>
+      <th>Tentativas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patient_exercises.each do |patient_exercise| %>
+      <tr>
+        <td><%= patient_exercise.exercise.name %></td>
+        <td><%= patient_exercise.success %></td>
+        <td><%= patient_exercise.failed %></td>
+        <td><%= patient_exercise.help %></td>
+        <td><%= attempts(patient_exercise) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
