@@ -1,26 +1,31 @@
 <%= link_to 'Pacientes', patients_path %>
 <p>Nome do paciente: <%= @patient_exercises.first.patient.name %> </p>
 <p>Lista de Exercícios </p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Exercício</th>
-      <th>Sucessos</th>
-      <th>Falhas</th>
-      <th>Com ajuda</th>
-      <th>Tentativas</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @patient_exercises.each do |patient_exercise| %>
+<%= form_with url: assessments_start_session_path, method: :post do %>
+  <table>
+    <thead>
       <tr>
-        <td><%= patient_exercise.exercise.name %></td>
-        <td><%= patient_exercise.success %></td>
-        <td><%= patient_exercise.failed %></td>
-        <td><%= patient_exercise.help %></td>
-        <td><%= attempts(patient_exercise) %></td>
+        <th>Exercício</th>
+        <th>Sucessos</th>
+        <th>Falhas</th>
+        <th>Com ajuda</th>
+        <th>Tentativas</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @patient_exercises.each do |patient_exercise| %>
+        <tr>
+          <td>
+            <%= check_box_tag "patient_exercise_ids[]", patient_exercise.id %>
+            <%= patient_exercise.exercise.name %>
+          </td>
+          <td><%= patient_exercise.success %></td>
+          <td><%= patient_exercise.failed %></td>
+          <td><%= patient_exercise.help %></td>
+          <td><%= attempts(patient_exercise) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= submit_tag "Iniciar Avaliação" %>
+<% end %>
