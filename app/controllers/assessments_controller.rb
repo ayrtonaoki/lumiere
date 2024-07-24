@@ -6,6 +6,6 @@ class AssessmentsController < ApplicationController
   end
 
   def start_session
-    binding.pry
+    @patient_exercise_ids = PatientExercise.where(id: params[:patient_exercise_ids])
   end
 end
