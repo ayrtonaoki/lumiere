@@ -1,3 +1,48 @@
 <% @patient_exercise_ids.each do |patient_exercise| %>
   <p> <%= patient_exercise.exercise.name %> </p>
+
+
+
 <% end %>
+
+<div class="counter">
+  <button class="button" id="increment-success">Sucesso</button>
+  <%= label_tag :count, '0', id: 'success-count' %>
+</div>
+<div class="counter">
+  <button class="button" id="increment-failed">Falha</button>
+  <%= label_tag :count, '0', id: 'failed-count' %>
+</div>
+<div class="counter">
+  <button class="button" id="increment-help">Com ajuda</button>
+  <%= label_tag :count, '0', id: 'help-count' %>
+</div>
+
+<script>
+  const counters = {
+    success: 0,
+    failed: 0,
+    help: 0
+  };
+
+  function updateDisplay(id, count) {
+    if (count <= 10) {
+      document.getElementById(id).textContent = count;
+    }
+  }
+
+  document.getElementById('increment-success').addEventListener('click', () => {
+    counters.success++;
+    updateDisplay('success-count', counters.success);
+  });
+
+  document.getElementById('increment-failed').addEventListener('click', () => {
+    counters.failed++;
+    updateDisplay('failed-count', counters.failed);
+  });
+
+  document.getElementById('increment-help').addEventListener('click', () => {
+    counters.help++;
+    updateDisplay('help-count', counters.help);
+  });
+</script>

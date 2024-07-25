@@ -8,4 +8,8 @@ class AssessmentsController < ApplicationController
   def start_session
     @patient_exercise_ids = PatientExercise.where(id: params[:patient_exercise_ids])
   end
+
+  def counter
+
+  end
 end
