@@ -9,7 +9,15 @@ class AssessmentsController < ApplicationController
     @patient_exercise_ids = PatientExercise.where(id: params[:patient_exercise_ids])
   end
 
-  def counter
+  def increment_success
+
+  end
+
+  def increment_failed
+
+  end
+
+  def increment_help
 
   end
 end

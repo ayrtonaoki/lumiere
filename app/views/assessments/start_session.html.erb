@@ -1,48 +1,49 @@
 <% @patient_exercise_ids.each do |patient_exercise| %>
   <p> <%= patient_exercise.exercise.name %> </p>
-
-
-
+  <div class="counter">
+    <button class="button" id="increment-success-<%= patient_exercise.exercise.id %>">Sucesso</button>
+    <%= label_tag :count, '0', id: "success-count-#{patient_exercise.exercise.id}" %>
+  </div>
+  <div class="counter">
+    <button class="button" id="increment-failed-<%= patient_exercise.exercise.id %>">Falha</button>
+    <%= label_tag :count, '0', id: "failed-count-#{patient_exercise.exercise.id}" %>
+  </div>
+  <div class="counter">
+    <button class="button" id="increment-help-<%= patient_exercise.exercise.id %>">Com ajuda</button>
+    <%= label_tag :count, '0', id: "help-count-#{patient_exercise.exercise.id}" %>
+  </div>
 <% end %>
 
-<div class="counter">
-  <button class="button" id="increment-success">Sucesso</button>
-  <%= label_tag :count, '0', id: 'success-count' %>
-</div>
-<div class="counter">
-  <button class="button" id="increment-failed">Falha</button>
-  <%= label_tag :count, '0', id: 'failed-count' %>
-</div>
-<div class="counter">
-  <button class="button" id="increment-help">Com ajuda</button>
-  <%= label_tag :count, '0', id: 'help-count' %>
-</div>
+
 
 <script>
-  const counters = {
-    success: 0,
-    failed: 0,
-    help: 0
-  };
-
-  function updateDisplay(id, count) {
-    if (count <= 10) {
+  function updateDisplay(id, count, exercise_name) {
+    attempts = exercise_name.success + exercise_name.failed + exercise_name.help;
+    if (attempts <= 10) {
       document.getElementById(id).textContent = count;
     }
   }
+  <% @patient_exercise_ids.each do |patient_exercise| %>
 
-  document.getElementById('increment-success').addEventListener('click', () => {
-    counters.success++;
-    updateDisplay('success-count', counters.success);
-  });
+    const <%= patient_exercise.exercise.name.gsub(' ', '') %> = {
+      success: 0,
+      failed: 0,
+      help: 0
+    };
 
-  document.getElementById('increment-failed').addEventListener('click', () => {
-    counters.failed++;
-    updateDisplay('failed-count', counters.failed);
-  });
+    document.getElementById('increment-success-<%= patient_exercise.exercise.id %>').addEventListener('click', () => {
+      <%= patient_exercise.exercise.name.gsub(' ', '') %>.success++;
+      updateDisplay('success-count-<%= patient_exercise.exercise.id %>', <%= patient_exercise.exercise.name.gsub(' ', '') %>.success, <%= patient_exercise.exercise.name.gsub(' ', '') %>);
+    });
 
-  document.getElementById('increment-help').addEventListener('click', () => {
-    counters.help++;
-    updateDisplay('help-count', counters.help);
-  });
+    document.getElementById('increment-failed-<%= patient_exercise.exercise.id %>').addEventListener('click', () => {
+      <%= patient_exercise.exercise.name.gsub(' ', '') %>.failed++;
+      updateDisplay('failed-count-<%= patient_exercise.exercise.id %>', <%= patient_exercise.exercise.name.gsub(' ', '') %>.failed, <%= patient_exercise.exercise.name.gsub(' ', '') %>);
+    });
+
+    document.getElementById('increment-help-<%= patient_exercise.exercise.id %>').addEventListener('click', () => {
+      <%= patient_exercise.exercise.name.gsub(' ', '') %>.help++;
+      updateDisplay('help-count-<%= patient_exercise.exercise.id %>', <%= patient_exercise.exercise.name.gsub(' ', '') %>.help, <%= patient_exercise.exercise.name.gsub(' ', '') %>);
+    });
+  <% end %>
 </script>
