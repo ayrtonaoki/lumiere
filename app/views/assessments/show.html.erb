@@ -1,7 +1,7 @@
 <%= link_to 'Pacientes', patients_path %>
 <p>Nome do paciente: <%= @patient_exercises.first.patient.name %> </p>
 <p>Lista de Exercícios </p>
-<%= form_with url: assessments_start_session_path, method: :post, local: true, data: { turbo: false } do %>
+<%= form_with url: start_session_assessments_path, method: :get, data: { turbo: false } do %>
   <table>
     <thead>
       <tr>
@@ -22,7 +22,7 @@
           <td><%= patient_exercise.success %></td>
           <td><%= patient_exercise.failed %></td>
           <td><%= patient_exercise.help %></td>
-          <td><%= attempts(patient_exercise) %></td>
+          <td><%= total_attempts(patient_exercise) %></td>
         </tr>
       <% end %>
     </tbody>

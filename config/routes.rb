@@ -5,16 +5,23 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "up" => "rails/health#show", as: :rails_health_check
-  get 'assessments/:patient_id', to: 'assessments#index', as: 'assessments'
-  post 'assessments/start_session', to: 'assessments#start_session', as: 'assessments_start_session'
-  resources :patient_exercises do
-    member do
-      patch 'increment_success'
-      patch 'increment_failed'
-      patch 'increment_help'
+
+  resources :assessments, only: [:show] do
+    collection do
+      get 'start_session', to: 'assessments#start_session'
     end
   end
+
+  resources :patient_exercises do
+    member do
+      patch 'success'
+      patch 'failed'
+      patch 'help'
+    end
+  end
+
   get 'backoffice', to: 'backoffice#index'
+
   resources :exercises, only: [:index, :new, :create]
   resources :patients, only: [:index, :new, :create]
 end

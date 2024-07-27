@@ -1,49 +1,15 @@
 <% @patient_exercise_ids.each do |patient_exercise| %>
-  <p> <%= patient_exercise.exercise.name %> </p>
-  <div class="counter">
-    <button class="button" id="increment-success-<%= patient_exercise.exercise.id %>">Sucesso</button>
-    <%= label_tag :count, '0', id: "success-count-#{patient_exercise.exercise.id}" %>
-  </div>
-  <div class="counter">
-    <button class="button" id="increment-failed-<%= patient_exercise.exercise.id %>">Falha</button>
-    <%= label_tag :count, '0', id: "failed-count-#{patient_exercise.exercise.id}" %>
-  </div>
-  <div class="counter">
-    <button class="button" id="increment-help-<%= patient_exercise.exercise.id %>">Com ajuda</button>
-    <%= label_tag :count, '0', id: "help-count-#{patient_exercise.exercise.id}" %>
-  </div>
+  <h3> <%= patient_exercise.exercise.name %> </h3>
+  <p>
+    <%= link_to 'Sucesso', success_patient_exercise_path(patient_exercise), data: { "turbo-method": :patch } %>
+    <%= label_tag patient_exercise.success %>
+  </p>
+  <p>
+    <%= link_to 'Falha', failed_patient_exercise_path(patient_exercise), data: { "turbo-method": :patch } %>
+    <%= label_tag patient_exercise.failed %>
+  </p>
+  <p>
+    <%= link_to 'Com ajuda', help_patient_exercise_path(patient_exercise), data: { "turbo-method": :patch } %>
+    <%= label_tag patient_exercise.help %>
+  </p>
 <% end %>
-
-
-
-<script>
-  function updateDisplay(id, count, exercise_name) {
-    attempts = exercise_name.success + exercise_name.failed + exercise_name.help;
-    if (attempts <= 10) {
-      document.getElementById(id).textContent = count;
-    }
-  }
-  <% @patient_exercise_ids.each do |patient_exercise| %>
-
-    const <%= patient_exercise.exercise.name.gsub(' ', '') %> = {
-      success: 0,
-      failed: 0,
-      help: 0
-    };
-
-    document.getElementById('increment-success-<%= patient_exercise.exercise.id %>').addEventListener('click', () => {
-      <%= patient_exercise.exercise.name.gsub(' ', '') %>.success++;
-      updateDisplay('success-count-<%= patient_exercise.exercise.id %>', <%= patient_exercise.exercise.name.gsub(' ', '') %>.success, <%= patient_exercise.exercise.name.gsub(' ', '') %>);
-    });
-
-    document.getElementById('increment-failed-<%= patient_exercise.exercise.id %>').addEventListener('click', () => {
-      <%= patient_exercise.exercise.name.gsub(' ', '') %>.failed++;
-      updateDisplay('failed-count-<%= patient_exercise.exercise.id %>', <%= patient_exercise.exercise.name.gsub(' ', '') %>.failed, <%= patient_exercise.exercise.name.gsub(' ', '') %>);
-    });
-
-    document.getElementById('increment-help-<%= patient_exercise.exercise.id %>').addEventListener('click', () => {
-      <%= patient_exercise.exercise.name.gsub(' ', '') %>.help++;
-      updateDisplay('help-count-<%= patient_exercise.exercise.id %>', <%= patient_exercise.exercise.name.gsub(' ', '') %>.help, <%= patient_exercise.exercise.name.gsub(' ', '') %>);
-    });
-  <% end %>
-</script>

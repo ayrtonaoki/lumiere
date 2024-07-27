@@ -1,13 +1,13 @@
 class PatientExercisesController < ApplicationController
-  def increment_success
+  def success
 
   end
 
-  def increment_failed
+  def failed
 
   end
 
-  def increment_help
+  def help
 
   end
 end
