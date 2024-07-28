@@ -1,15 +1,12 @@
-<% @patient_exercise_ids.each do |patient_exercise| %>
-  <h3> <%= patient_exercise.exercise.name %> </h3>
+<% @patient_exercises.each do |patient_exercise| %>
+  <h3> <%= "#{patient_exercise.exercise.name} - Tentativas: #{patient_exercise.session_exercise.attempts}" %> </h3>
   <p>
-    <%= link_to 'Sucesso', success_patient_exercise_path(patient_exercise), data: { "turbo-method": :patch } %>
-    <%= label_tag patient_exercise.success %>
+    <%= link_to 'Sucesso', success_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
   </p>
   <p>
-    <%= link_to 'Falha', failed_patient_exercise_path(patient_exercise), data: { "turbo-method": :patch } %>
-    <%= label_tag patient_exercise.failed %>
+    <%= link_to 'Falha', failed_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
   </p>
   <p>
-    <%= link_to 'Com ajuda', help_patient_exercise_path(patient_exercise), data: { "turbo-method": :patch } %>
-    <%= label_tag patient_exercise.help %>
+    <%= link_to 'Com ajuda', help_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
   </p>
 <% end %>

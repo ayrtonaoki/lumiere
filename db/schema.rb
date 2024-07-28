@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_21_214337) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_28_032237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_214337) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "session_exercises", force: :cascade do |t|
+    t.bigint "patient_exercise_id", null: false
+    t.integer "attempts", default: 0
+    t.string "therapist_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_exercise_id"], name: "index_session_exercises_on_patient_exercise_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -64,4 +73,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_214337) do
 
   add_foreign_key "patient_exercises", "exercises"
   add_foreign_key "patient_exercises", "patients"
+  add_foreign_key "session_exercises", "patient_exercises"
 end
