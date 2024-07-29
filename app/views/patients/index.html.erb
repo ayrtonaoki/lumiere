@@ -1,3 +1,7 @@
+<h1>Lista de pacientes</h1>
+
 <% @patients.each do |patient| %>
-  <p> <%= link_to "#{patient.name}", assessment_path(patient) %> </p>
+  <% if patient.patient_exercises.any? %>
+    <p> <%= link_to "#{patient.name}", assessment_path(patient) %> </p>
+  <% end %>
 <% end %>
