@@ -7,6 +7,6 @@ class AssessmentsController < ApplicationController
   end
 
   def start_session
-    @patient_exercises = PatientExercise.where(id: params[:patient_exercise_ids])
+    @patient_exercises = PatientExercise.where(id: params[:patient_exercise_ids]).order(:id)
   end
 end
