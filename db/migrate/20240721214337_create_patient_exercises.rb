@@ -6,6 +6,7 @@ class CreatePatientExercises < ActiveRecord::Migration[7.1]
       t.integer :success
       t.integer :failed
       t.integer :help
+      t.integer :attempts, default: 0
 
       t.timestamps
     end
