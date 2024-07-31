@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       patch 'failed'
       patch 'help'
     end
+    get 'patient_exercises', to: 'patient_exercises#index'
   end
 
   get 'backoffice', to: 'backoffice#index'

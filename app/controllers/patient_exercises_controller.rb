@@ -1,4 +1,8 @@
 class PatientExercisesController < ApplicationController
+  def index
+
+  end
+
   def success
     patient_exercise = PatientExercise.find(params[:id])
     patient_exercise.update(success: patient_exercise.success + 1)
