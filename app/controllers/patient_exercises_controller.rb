@@ -1,6 +1,6 @@
 class PatientExercisesController < ApplicationController
   def index
-
+    @article = PatientExercise.first
   end
 
   def success
