@@ -1,6 +1,6 @@
 class PatientExercisesController < ApplicationController
   def index
-    @article = PatientExercise.first
+    @patient_exercises = PatientExercise.available_exercises
   end
 
   def success
