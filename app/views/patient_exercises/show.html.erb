@@ -3,7 +3,7 @@
 <h1>Lista de exercícios - <%= @patient_exercises.first.patient.name %></h1>
 
 <%= link_to 'Pacientes', patients_path %>
-<%= form_with url: start_session_assessments_path(patient_id: @patient_exercises.first.patient.id), method: :get, data: { turbo: false } do %>
+<%= form_with url: start_session_patient_exercises_path(patient_id: @patient_exercises.first.patient.id), method: :get, data: { turbo: false } do %>
   <table>
     <thead>
       <tr>

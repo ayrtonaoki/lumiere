@@ -3,12 +3,26 @@ class PatientExercisesController < ApplicationController
     @patient_exercises = PatientExercise.available_exercises
   end
 
+  def show
+    @patient_exercises = PatientExercise.where(patient_id: params[:id]).order(:id)
+    @patient_exercises.update_all(attempts: 0)
+  end
+
+  def start_session
+    if params[:patient_exercise_ids].nil?
+      flash[:alert] = 'Selecione ao menos um exercício para iniciar a avaliação.'
+      redirect_back(fallback_location: root_path)
+    end
+
+    @patient_exercises = PatientExercise.where(id: params[:patient_exercise_ids]).order(:id)
+  end
+
   def success
     patient_exercise = PatientExercise.find(params[:id])
     patient_exercise.update(success: patient_exercise.success + 1)
     patient_exercise.update(attempts: patient_exercise.attempts + 1)
 
-    redirect_to start_session_assessments_path(patient_exercise_ids: params[:patient_exercise_ids])
+    redirect_to start_session_patient_exercises_path(patient_exercise_ids: params[:patient_exercise_ids])
   end
 
   def failed
@@ -16,7 +30,7 @@ class PatientExercisesController < ApplicationController
     patient_exercise.update(failed: patient_exercise.failed + 1)
     patient_exercise.update(attempts: patient_exercise.attempts + 1)
 
-    redirect_to start_session_assessments_path(patient_exercise_ids: params[:patient_exercise_ids])
+    redirect_to start_session_patient_exercises_path(patient_exercise_ids: params[:patient_exercise_ids])
   end
 
   def help
@@ -24,6 +38,6 @@ class PatientExercisesController < ApplicationController
     patient_exercise.update(help: patient_exercise.help + 1)
     patient_exercise.update(attempts: patient_exercise.attempts + 1)
 
-    redirect_to start_session_assessments_path(patient_exercise_ids: params[:patient_exercise_ids])
+    redirect_to start_session_patient_exercises_path(patient_exercise_ids: params[:patient_exercise_ids])
   end
 end
