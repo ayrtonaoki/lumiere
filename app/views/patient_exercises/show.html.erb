@@ -32,12 +32,14 @@
   <%= submit_tag "Iniciar Avaliação" %>
 <% end %>
 <br>
-<%= form_with url: patient_exercises_path(patient_id: @patient_exercises.first.patient.id), method: :post, data: { turbo: false } do |form| %>
-  <div class="field">
-    <h3><%= form.label 'Exercícios Disponíveis' %></h3>
-    <%= form.select :exercise_id, options_for_select(@available_exercises.map { |available_exercise| [available_exercise.name, available_exercise.id] }) %>
-  </div>
-  <div class="actions">
-    <%= form.submit 'Adicionar Novo Exercício' %>
-  </div>
+<% if admin_signed_in? %>
+  <%= form_with url: patient_exercises_path(patient_id: @patient_exercises.first.patient.id), method: :post, data: { turbo: false } do |form| %>
+    <div class="field">
+      <h3><%= form.label 'Exercícios Disponíveis' %></h3>
+      <%= form.select :exercise_id, options_for_select(@available_exercises.map { |available_exercise| [available_exercise.name, available_exercise.id] }) %>
+    </div>
+    <div class="actions">
+      <%= form.submit 'Adicionar Novo Exercício' %>
+    </div>
+  <% end %>
 <% end %>
