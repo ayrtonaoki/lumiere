@@ -32,6 +32,7 @@
   <%= submit_tag "Iniciar Avaliação" %>
 <% end %>
 <br>
+
 <% if admin_signed_in? %>
   <%= form_with url: patient_exercises_path(patient_id: @patient_exercises.first.patient.id), method: :post, data: { turbo: false } do |form| %>
     <div class="field">
@@ -42,4 +43,5 @@
       <%= form.submit 'Adicionar Novo Exercício' %>
     </div>
   <% end %>
+  <%= link_to 'Voltar', backoffice_path %>
 <% end %>

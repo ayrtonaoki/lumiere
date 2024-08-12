@@ -1,5 +1,9 @@
 <h1>Lista de pacientes</h1>
 
+<% if admin_signed_in? %>
+  <%= link_to 'Voltar', backoffice_path %>
+<% end %>
+
 <% @patients.each do |patient| %>
   <% if patient.patient_exercises.any? %>
     <p> <%= link_to "#{patient.name}", patient_exercise_path(patient) %> </p>
