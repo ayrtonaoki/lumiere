@@ -1,11 +1,11 @@
 # Create User
 if User.count == 0
-  User.create!(email: 'user@user.com', password: 123456, password_confirmation: 123456)
+  User.create!(email: ENV['USER_EMAIL'], password: ENV['USER_PASSWORD'], password_confirmation: ENV['USER_PASSWORD'])
 end
 
 # Create Admin
 if Admin.count == 0
-  Admin.create!(email: 'admin@admin.com', password: 123456, password_confirmation: 123456)
+  Admin.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'], password_confirmation: ENV['ADMIN_PASSWORD'])
 end
 
 # Create Patients
