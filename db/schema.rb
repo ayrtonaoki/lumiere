@@ -35,9 +35,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_214337) do
   create_table "patient_exercises", force: :cascade do |t|
     t.bigint "patient_id", null: false
     t.bigint "exercise_id", null: false
-    t.integer "success"
-    t.integer "failed"
-    t.integer "help"
+    t.integer "success", default: 0
+    t.integer "failed", default: 0
+    t.integer "help", default: 0
     t.integer "attempts", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

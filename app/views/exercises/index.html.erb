@@ -1,7 +1,9 @@
-<%= link_to 'Backoffice', backoffice_path %>
-<%= link_to 'Cadastrar Exercícios', new_exercise_path %>
+<h1>Lista de exercícios</h1>
+
+<p><%= link_to 'Voltar', backoffice_path %></p>
+<p><%= link_to 'Cadastrar Exercício', new_exercise_path %></p>
 
 <h3>Lista de Exercícios</h3>
 <% @exercises.each do |exercise| %>
-  <p> <%= exercise.name %> </p>
+  <p><%= exercise.name %></p>
 <% end %>

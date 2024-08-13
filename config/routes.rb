@@ -6,17 +6,15 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :assessments, only: [:show] do
-    collection do
-      get 'start_session', to: 'assessments#start_session'
-    end
-  end
-
-  resources :patient_exercises do
+  resources :patient_exercises, only: [:index, :show, :new, :create] do
     member do
       patch 'success'
       patch 'failed'
       patch 'help'
+    end
+
+    collection do
+      get 'start_session', to: 'patient_exercises#start_session'
     end
   end
 

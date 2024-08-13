@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user_or_admin!
 
   def index
     @patients = Patient.all
@@ -22,5 +22,15 @@ class PatientsController < ApplicationController
 
   def patient_params
     params.require(:patient).permit(:name)
+  end
+
+  def authenticate_user_or_admin!
+    if user_signed_in?
+      return true
+    elsif admin_signed_in?
+      return true
+    else
+      redirect_to new_user_session_path, alert: 'You need to sign in first.'
+    end
   end
 end

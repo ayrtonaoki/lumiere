@@ -1,3 +1,5 @@
+<h1>Avaliação - <%= @patient_exercises.first.patient.name %></h1>
+
 <% @patient_exercises.each do |patient_exercise| %>
   <h3> <%= "#{patient_exercise.exercise.name} - Tentativas: #{patient_exercise.attempts}" %> </h3>
   <p>
@@ -11,4 +13,4 @@
   </p>
 <% end %>
 
-<h2><%= link_to "Finalizar", assessment_path(@patient_exercises.first.patient) %></h2>
+<h2><%= link_to "Finalizar", patient_exercise_path(@patient_exercises.first.patient) %></h2>

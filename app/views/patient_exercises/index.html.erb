@@ -1,0 +1,12 @@
+associar exercicio ao paciente
+
+<%= form_with(model: @article, local: true) do |form| %>
+  <div class="field">
+    <%= form.label 'Paciente' %>
+    <%= form.select :patient, options_for_select(patient_exercises, @patient_exercises.patient.name) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

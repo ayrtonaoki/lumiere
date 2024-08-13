@@ -1,4 +1,4 @@
-<h1>Cadastrar exercício</h1>
+<h1>Adicionar Novo Exercício - @</h1>
 
 <%= form_with(model: @exercise, local: true) do |form| %>
   <div class="field">
@@ -9,5 +9,3 @@
     <%= form.submit 'Create Exercise' %>
   </div>
 <% end %>
-
-<%= link_to 'Voltar', backoffice_path %>
