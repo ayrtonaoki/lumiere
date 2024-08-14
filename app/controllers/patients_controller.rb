@@ -7,11 +7,13 @@ class PatientsController < ApplicationController
 
   def new
     @patient = Patient.new
+    @exercises = Exercise.all
   end
 
   def create
-    @patient = Patient.new(patient_params)
+    @patient = Patient.new(name: patient_params[:name])
     if @patient.save
+      PatientExercise.create!(patient_id: @patient.id, exercise_id: patient_params[:exercise_id])
       redirect_to patients_path
     else
       render :new
@@ -21,7 +23,7 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:name)
+    params.require(:patient).permit(:name, :exercise_id)
   end
 
   def authenticate_user_or_admin!

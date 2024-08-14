@@ -6,6 +6,11 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+
+  <div class="field">
+    <h3><%= form.label 'Exercícios Disponíveis' %></h3>
+    <%= form.select :exercise_id, options_for_select(@exercises.map { |exercise| [exercise.name, exercise.id] }) %>
+  </div>
   <div class="actions">
     <%= form.submit 'Create Patient' %>
   </div>
