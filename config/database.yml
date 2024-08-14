@@ -20,3 +20,5 @@ production:
   database: <%= ENV["LUMIERE_DATABASE_DATABASE"] %>
   username: <%= ENV["LUMIERE_DATABASE_USERNAME"] %>
   password: <%= ENV["LUMIERE_DATABASE_PASSWORD"] %>
+  host: <%= ENV["LUMIERE_DATABASE_HOST"] %>
+  port: <%= ENV["LUMIERE_DATABASE_PORT"] %>
