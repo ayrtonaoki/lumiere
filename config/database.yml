@@ -17,6 +17,6 @@ test:
 
 production:
   <<: *default
-  database: lumiere_production
-  username: lumiere
+  database: <%= ENV["LUMIERE_DATABASE_DATABASE"] %>
+  username: <%= ENV["LUMIERE_DATABASE_USERNAME"] %>
   password: <%= ENV["LUMIERE_DATABASE_PASSWORD"] %>
