@@ -10,9 +10,13 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new(exercise_params)
     if @exercise.save
+      flash[:message] = 'Exercício criado com sucesso.'
+
       redirect_to exercises_path
     else
-      render :new
+      flash[:message] = 'Nome do exercício não pode ficar em branco!'
+
+        redirect_to new_exercise_path
     end
   end
 

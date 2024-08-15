@@ -1,5 +1,9 @@
 <h1>Cadastrar exercício</h1>
 
+<div class="alert alert-danger">
+  <%= flash[:message] %>
+</div>
+
 <%= form_with(model: @exercise, local: true) do |form| %>
   <div class="field">
     <%= form.label :name %>

@@ -23,7 +23,7 @@ class PatientExercisesController < ApplicationController
 
   def start_session
     if params[:patient_exercise_ids].nil?
-      flash[:alert] = 'Selecione ao menos um exercício para iniciar a avaliação.'
+      flash[:message] = 'Selecione ao menos um exercício para iniciar a avaliação.'
       redirect_back(fallback_location: root_path)
     end
 

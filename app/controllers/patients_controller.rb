@@ -12,11 +12,18 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(name: patient_params[:name])
+    @exercises = Exercise.all
+
     if @patient.save
       PatientExercise.create!(patient_id: @patient.id, exercise_id: patient_params[:exercise_id])
+
+      flash[:message] = 'Paciente criado com sucesso.'
+
       redirect_to patients_path
     else
-      render :new
+      flash[:message] = 'Nome do paciente não pode ficar em branco!'
+
+      redirect_to new_patient_path
     end
   end
 
