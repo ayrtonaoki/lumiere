@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   resources :patient_exercises, only: [:index, :show, :new, :create] do
     member do
       patch 'success'
+      patch 'deduct_success'
       patch 'failed'
+      patch 'deduct_failed'
       patch 'help'
+      patch 'deduct_help'
     end
 
     collection do
