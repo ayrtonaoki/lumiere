@@ -1,1 +1,1 @@
-Lumiere - teste
+Lumiere
