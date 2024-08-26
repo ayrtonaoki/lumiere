@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_214337) do
     t.integer "failed", default: 0
     t.integer "help", default: 0
     t.integer "attempts", default: 0
-    t.string "therapist"
+    t.string "therapist", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_patient_exercises_on_exercise_id"
