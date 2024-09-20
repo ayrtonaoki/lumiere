@@ -2,18 +2,18 @@
 
 <% @patient_exercises.each do |patient_exercise| %>
   <h3> <%= "#{patient_exercise.exercise.name} - Tentativas: #{patient_exercise.attempts}" %> </h3>
+  <p>Sucesso: <%= patient_exercise.success %> <p>
   <p>
-    Sucesso
     <%= link_to '+', success_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
     <%= link_to '-', deduct_success_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
   </p>
+  <p>Falha: <%= patient_exercise.failed %> <p>
   <p>
-    Falha
     <%= link_to '+', failed_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
     <%= link_to '-', deduct_failed_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
   </p>
+  <p>Com ajuda: <%= patient_exercise.help %> <p>
   <p>
-    Com ajuda
     <%= link_to '+', help_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
     <%= link_to '-', deduct_help_patient_exercise_path(patient_exercise, patient_exercise_ids: patient_exercise_ids(@patient_exercises)), data: { "turbo-method": :patch } %>
   </p>
