@@ -26,8 +26,8 @@ class PatientExercisesController < ApplicationController
       flash[:message] = 'Selecione ao menos um exercício para iniciar a avaliação.'
       redirect_back(fallback_location: root_path)
     end
-
     @patient_exercises = PatientExercise.where(id: params[:patient_exercise_ids]).order(:id)
+    @patient_exercises.update_all(therapist: params[:therapist_name])
   end
 
   def success
