@@ -1,0 +1,6 @@
+<%= link_to 'Voltar', backoffice_path %>
+<h1>Lista de Terapeutas</h1>
+
+<% @therapists.each do |therapist| %>
+  <p> <%= therapist.name %> </p>
+<% end %>
