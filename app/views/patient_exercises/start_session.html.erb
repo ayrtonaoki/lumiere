@@ -1,4 +1,5 @@
-<h1>Avaliação <%= @patient_exercises.first.patient.name %> - <%= @patient_exercises.first.created_at.strftime("%d/%m/%Y %H:%M:%S") %> </h1>
+<h1>Avaliação <%= @patient_exercises.first.patient.name %> - <%= @patient_exercises.first.created_at.strftime("%d/%m/%Y") %> </h1>
+<h2>Terapeuta: <%= @patient_exercises.first.therapist.name %></h1>
 
 <% @patient_exercises.each do |patient_exercise| %>
   <h3> <%= "#{patient_exercise.exercise.name} - Tentativas: #{patient_exercise.attempts}" %> </h3>
