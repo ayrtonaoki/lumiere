@@ -29,11 +29,11 @@
       <% end %>
     </tbody>
   </table>
-  <div>
-    <p><%= label_tag :name, "Terapeuta" %></p>
-    <p><%= text_field_tag :therapist_name %></p>
+  <div class="field">
+    <h3><%= label_tag 'Terapeuta' %></h3>
+    <%= select_tag :therapist_name, options_for_select(@therapists.map { |therapist| [therapist.name, therapist.id] }) %>
   </div>
-  <%= submit_tag "Iniciar Avaliação" %>
+  <p><%= submit_tag "Iniciar Avaliação" %></p>
 <% end %>
 <br>
 
