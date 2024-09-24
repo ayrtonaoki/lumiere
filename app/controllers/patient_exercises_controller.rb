@@ -9,6 +9,8 @@ class PatientExercisesController < ApplicationController
 
     exercise_ids = @patient_exercises.pluck(:exercise_id)
     @available_exercises = Exercise.available_exercises(exercise_ids)
+
+    @therapists = Therapist.all
   end
 
   def new
@@ -27,7 +29,6 @@ class PatientExercisesController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
     @patient_exercises = PatientExercise.where(id: params[:patient_exercise_ids]).order(:id)
-    @patient_exercises.update_all(therapist: params[:therapist_name])
   end
 
   def success
