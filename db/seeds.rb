@@ -29,14 +29,14 @@ if Therapist.count == 0
 end
 
 if PatientExercise.count == 0
-  PatientExercise.create!(patient_id: 1, exercise_id: 1, success: 10, failed: 10, help: 10, therapist: 'Jeovana - TO')
-  PatientExercise.create!(patient_id: 2, exercise_id: 2, success: 10, failed: 10, help: 10, therapist: 'Rose - Psicologia')
-  PatientExercise.create!(patient_id: 2, exercise_id: 3, success: 10, failed: 10, help: 10, therapist: 'Jeovana - TO')
-  PatientExercise.create!(patient_id: 3, exercise_id: 1, success: 10, failed: 10, help: 10, therapist: 'Rose - Psicologia')
-  PatientExercise.create!(patient_id: 3, exercise_id: 2, success: 10, failed: 10, help: 10, therapist: 'Jeovana - TO')
-  PatientExercise.create!(patient_id: 3, exercise_id: 4, success: 10, failed: 10, help: 10, therapist: 'Rose - Psicologia')
-  PatientExercise.create!(patient_id: 4, exercise_id: 1, success: 10, failed: 10, help: 10, therapist: 'Ayrton - Fisioterapia')
-  PatientExercise.create!(patient_id: 4, exercise_id: 2, success: 10, failed: 10, help: 10, therapist: 'Jeovana - TO')
-  PatientExercise.create!(patient_id: 4, exercise_id: 3, success: 10, failed: 10, help: 10, therapist: 'Ayrton - Fisioterapia')
-  PatientExercise.create!(patient_id: 4, exercise_id: 4, success: 10, failed: 10, help: 10, therapist: 'Jeovana - TO')
+  PatientExercise.create!(patient_id: 1, exercise_id: 1, therapist_id: 1, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 2, exercise_id: 2, therapist_id: 2, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 2, exercise_id: 3, therapist_id: 1, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 3, exercise_id: 1, therapist_id: 2, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 3, exercise_id: 2, therapist_id: 1, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 3, exercise_id: 4, therapist_id: 2, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 4, exercise_id: 1, therapist_id: 3, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 4, exercise_id: 2, therapist_id: 1, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 4, exercise_id: 3, therapist_id: 3, success: 10, failed: 10, help: 10)
+  PatientExercise.create!(patient_id: 4, exercise_id: 4, therapist_id: 1, success: 10, failed: 10, help: 10)
 end

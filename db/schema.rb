@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_23_210518) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_24_221234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,15 +35,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_210518) do
   create_table "patient_exercises", force: :cascade do |t|
     t.bigint "patient_id", null: false
     t.bigint "exercise_id", null: false
+    t.bigint "therapist_id", null: false
     t.integer "success", default: 0
     t.integer "failed", default: 0
     t.integer "help", default: 0
     t.integer "attempts", default: 0
-    t.string "therapist", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_patient_exercises_on_exercise_id"
     t.index ["patient_id"], name: "index_patient_exercises_on_patient_id"
+    t.index ["therapist_id"], name: "index_patient_exercises_on_therapist_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -72,4 +73,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_210518) do
 
   add_foreign_key "patient_exercises", "exercises"
   add_foreign_key "patient_exercises", "patients"
+  add_foreign_key "patient_exercises", "therapists"
 end
