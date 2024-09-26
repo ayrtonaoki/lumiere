@@ -1,4 +1,5 @@
-<h1>Cadastrar exercício</h1>
+<%= link_to 'Voltar', backoffice_path %>
+<h1>Cadastrar Treino</h1>
 
 <div class="alert alert-danger">
   <%= flash[:message] %>
@@ -10,8 +11,6 @@
     <%= form.text_field :name %>
   </div>
   <div class="actions">
-    <%= form.submit 'Create Exercise' %>
+    <%= form.submit 'Criar Treino' %>
   </div>
 <% end %>
-
-<%= link_to 'Voltar', backoffice_path %>
