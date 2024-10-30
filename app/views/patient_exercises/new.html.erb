@@ -1,11 +1,14 @@
-<h1>Adicionar Novo Exercício - @</h1>
+<h1>Selecione os itens</h1>
 
-<%= form_with(model: @exercise, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= form.submit 'Create Exercise' %>
-  </div>
+<%= form_with url: patient_exercises_path(patient_id: @patient_id), method: :post do %>
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li>
+        <%= check_box_tag 'exercise_ids[]', exercise.id %>
+        <%= label_tag "exercise_ids_#{exercise.id}", exercise.name %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= submit_tag 'Enviar Selecionados' %>
 <% end %>

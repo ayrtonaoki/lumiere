@@ -4,6 +4,7 @@ class PatientExercisesController < ApplicationController
   end
 
   def show
+    @patient_id = params[:id]
     @patient_exercises = PatientExercise.where(patient_id: params[:id]).order(:id)
     @patient_exercises.update_all(attempts: 0)
 
@@ -14,13 +15,27 @@ class PatientExercisesController < ApplicationController
   end
 
   def new
+    @patient_id = params[:patient_id]
+    @exercises = Exercise.all
     @patient_exercise = PatientExercise.new
   end
 
   def create
-    @patient_exercise = PatientExercise.new(patient_id: patient_exercise_params[:patient_id], exercise_id: patient_exercise_params[:exercise_id])
-    @patient_exercise.save
-    redirect_to patient_exercise_path(patient_exercise_params[:patient_id])
+    patient_id = params[:patient_id]
+    exercise_ids = params[:exercise_ids]
+
+    begin
+      ActiveRecord::Base.transaction do
+        exercise_ids.each do |id|
+          PatientExercise.create!(patient_id: patient_id, exercise_id: id)
+        end
+      end
+
+      redirect_to patient_exercise_path(patient_id), notice: "Exercises successfully assigned to patient."
+
+    rescue ActiveRecord::RecordInvalid => e
+      redirect_to new_patient_exercise_path(patient_id: patient_id), alert: "Failed to assign exercises: #{e.message}"
+    end
   end
 
   def start_session
