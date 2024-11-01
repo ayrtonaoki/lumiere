@@ -16,7 +16,7 @@ class PatientExercisesController < ApplicationController
 
   def new
     @patient_id = params[:patient_id]
-    @exercises = Exercise.all
+    @available_exercises = Exercise.available_exercises(params[:patient_id])
     @patient_exercise = PatientExercise.new
   end
 

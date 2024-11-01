@@ -4,5 +4,5 @@ class Exercise < ApplicationRecord
 
   validates :name, presence: { message: "Nome não pode ficar em branco" }
 
-  scope :available_exercises, ->(exercise_ids) { where.not(id: exercise_ids) }
+  scope :available_exercises, ->(patient_id) { where.not(id: PatientExercise.where(patient_id: patient_id).select(:exercise_id)) }
 end

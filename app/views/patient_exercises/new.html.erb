@@ -1,14 +1,19 @@
-<h1>Selecione os itens</h1>
+<%= link_to 'Voltar', patients_path %>
+<% if @available_exercises.present? %>
+  <h1>Selecione os treinos que deseja adicionar</h1>
 
-<%= form_with url: patient_exercises_path(patient_id: @patient_id), method: :post do %>
-  <ul>
-    <% @exercises.each do |exercise| %>
-      <li>
-        <%= check_box_tag 'exercise_ids[]', exercise.id %>
-        <%= label_tag "exercise_ids_#{exercise.id}", exercise.name %>
-      </li>
-    <% end %>
-  </ul>
+  <%= form_with url: patient_exercises_path(patient_id: @patient_id), method: :post do %>
+    <ul>
+      <% @available_exercises.each do |exercise| %>
+        <li>
+          <%= check_box_tag 'exercise_ids[]', exercise.id %>
+          <%= label_tag "exercise_ids_#{exercise.id}", exercise.name %>
+        </li>
+      <% end %>
+    </ul>
 
-  <%= submit_tag 'Enviar Selecionados' %>
+    <%= submit_tag 'Adicionar Treinos' %>
+  <% end %>
+<% else %>
+  <h1>Não há treinos disponíveis para esse paciente<h1>
 <% end %>
