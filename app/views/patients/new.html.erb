@@ -11,11 +11,18 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
-    <h3><%= form.label 'Treinos Disponíveis' %></h3>
-    <%= form.select :exercise_id, options_for_select(@exercises.map { |exercise| [exercise.name, exercise.id] }) %>
-  </div>
+  <h1>Selecione os treinos que deseja adicionar</h1>
+
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li>
+        <%= check_box_tag 'exercise_ids[]', exercise.id %>
+        <%= label_tag "exercise_ids_#{exercise.id}", exercise.name %>
+      </li>
+    <% end %>
+  </ul>
+
   <div class="actions">
-    <%= form.submit 'Criar Paciente' %>
+    <%= submit_tag 'Criar Paciente' %>
   </div>
 <% end %>

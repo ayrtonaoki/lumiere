@@ -11,19 +11,23 @@ class PatientsController < ApplicationController
   end
 
   def create
-    @patient = Patient.new(name: patient_params[:name])
-    @exercises = Exercise.all
+    patient = Patient.new(name: patient_params[:name])
+    exercise_ids = params[:exercise_ids]
 
-    if @patient.save
-      PatientExercise.create!(patient_id: @patient.id, exercise_id: patient_params[:exercise_id])
+    if patient.save
+      begin
+        ActiveRecord::Base.transaction do
+          exercise_ids.each do |id|
+            PatientExercise.create!(patient_id: patient.id, exercise_id: id)
+          end
+        end
+        flash[:message] = 'Paciente criado com sucesso.'
 
-      flash[:message] = 'Paciente criado com sucesso.'
+        redirect_to patient_exercise_path(patient.id)
 
-      redirect_to patients_path
-    else
-      flash[:message] = 'Nome do paciente não pode ficar em branco!'
-
-      redirect_to new_patient_path
+      rescue ActiveRecord::RecordInvalid => e
+        redirect_to new_patient_path(patient_id: patient_id), alert: "Failed to assign exercises: #{e.message}"
+      end
     end
   end
 
