@@ -2,41 +2,7 @@
 <%= link_to 'Voltar', patients_path %>
 
 <h1>Lista de Treinos - <%= @patient_exercises.first.patient.name %></h1>
-<% if user_signed_in? %>
-  <%= form_with url: start_session_patient_exercises_path(patient_id: @patient_exercises.first.patient.id), method: :get, data: { turbo: false } do %>
-    <table>
-      <thead>
-        <tr>
-          <th>Treino</th>
-          <th>Sucessos</th>
-          <th>Falhas</th>
-          <th>Com ajuda</th>
-          <th>Tentativas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @patient_exercises.each do |patient_exercise| %>
-          <tr>
-            <td>
-              <%= check_box_tag "patient_exercise_ids[]", patient_exercise.id %>
-              <%= patient_exercise.exercise.name %>
-            </td>
-            <td><%= patient_exercise.success %></td>
-            <td><%= patient_exercise.failed %></td>
-            <td><%= patient_exercise.help %></td>
-            <td><%= total_attempts(patient_exercise) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="field">
-      <h3><%= label_tag 'Terapeuta' %></h3>
-      <%= select_tag :therapist_name, options_for_select(@therapists.map { |therapist| [therapist.name, therapist.id] }) %>
-    </div>
-    <p><%= submit_tag "Iniciar Avaliação" %></p>
-  <% end %>
-  <br>
-<% end %>
+
 <% if admin_signed_in? %>
   <tbody>
     <% @patient_exercises.each do |patient_exercise| %>

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'start_session', to: 'patient_exercises#start_session'
+      get 'select_exercises', to: 'patient_exercises#select_exercises'
     end
   end
 

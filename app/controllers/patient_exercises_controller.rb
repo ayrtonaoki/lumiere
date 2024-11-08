@@ -6,12 +6,6 @@ class PatientExercisesController < ApplicationController
   def show
     @patient_id = params[:id]
     @patient_exercises = PatientExercise.where(patient_id: params[:id]).order(:id)
-    @patient_exercises.update_all(attempts: 0)
-
-    exercise_ids = @patient_exercises.pluck(:exercise_id)
-    @available_exercises = Exercise.available_exercises(exercise_ids)
-
-    @therapists = Therapist.all
   end
 
   def new
@@ -36,6 +30,13 @@ class PatientExercisesController < ApplicationController
     rescue ActiveRecord::RecordInvalid => e
       redirect_to new_patient_exercise_path(patient_id: patient_id), alert: "Failed to assign exercises: #{e.message}"
     end
+  end
+
+  def select_exercises
+    patient_id = params[:patient_id]
+    @patient_exercises = PatientExercise.where(patient_id: patient_id).order(:id)
+
+    @therapists = Therapist.all
   end
 
   def start_session

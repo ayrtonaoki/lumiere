@@ -1,11 +1,9 @@
-<% if admin_signed_in? %>
-  <%= link_to 'Voltar', backoffice_path %>
+<%= link_to 'Voltar', backoffice_path %>
 
-  <h1>Lista de pacientes</h1>
+<h1>Lista de pacientes - <%= admin_signed_in? ? "Admin" : "Terapeuta" %> </h1>
 
-  <% @patients.each do |patient| %>
-    <% if patient.patient_exercises.any? %>
-      <p> <%= link_to "#{patient.name}", patient_exercise_path(patient) %> </p>
-    <% end %>
+<% @patients.each do |patient| %>
+  <% if patient.patient_exercises.any? %>
+    <p> <%= link_to "#{patient.name}", admin_signed_in? ? patient_exercise_path(patient) : select_exercises_patient_exercises_path(patient_id: patient.id) %> </p>
   <% end %>
 <% end %>
