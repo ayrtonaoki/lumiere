@@ -1,3 +1,5 @@
+<p><%= link_to 'Voltar', patients_path %></p>
+
 <%= form_with url: start_session_patient_exercises_path(patient_id: @patient_exercises.first.patient.id), method: :get, data: { turbo: false } do %>
   <table>
     <thead>
