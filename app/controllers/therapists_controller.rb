@@ -10,7 +10,7 @@ class TherapistsController < ApplicationController
   end
 
   def create
-    @therapist = Therapist.new(name: therapist_params[:name])
+    @therapist = Therapist.new(name: therapist_params[:name], role: therapist_params[:role])
 
     if @therapist.save
       flash[:message] = 'Terapeuta criada com sucesso.'
@@ -26,6 +26,6 @@ end
   private
 
   def therapist_params
-    params.require(:therapist).permit(:name)
+    params.require(:therapist).permit(:name, :role)
   end
 end

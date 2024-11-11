@@ -55,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_24_221234) do
 
   create_table "therapists", force: :cascade do |t|
     t.string "name"
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

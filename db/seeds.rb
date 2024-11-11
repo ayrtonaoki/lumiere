@@ -23,9 +23,9 @@ if Exercise.count == 0
 end
 
 if Therapist.count == 0
-  Therapist.create!(name: 'Jeovana')
-  Therapist.create!(name: 'Rose')
-  Therapist.create!(name: 'Andressa')
+  Therapist.create!(name: 'Jeovana', role: 'TO')
+  Therapist.create!(name: 'Rose', role: 'Fisioterapeuta')
+  Therapist.create!(name: 'Andressa', role: 'Psicóloga')
 end
 
 if PatientExercise.count == 0
